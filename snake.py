@@ -5,11 +5,17 @@ import sys
 
 pygame.init()
 
+# Cargar el sonido de la manzana
+eat_sound = pygame.mixer.Sound("eat_sound.wav")
+magic_potion_sound = pygame.mixer.Sound("magic_potion_sound.wav")
+
+
 # Definir colores
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (213, 50, 80)
 blue = (50, 153, 213)
+green = (0, 255, 0)
 
 # Definir el tamaño de la pantalla
 dis_width = 600
@@ -60,6 +66,10 @@ def gameLoop():
     # Inicializar la posición de la comida
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+
+    potionx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+    potiony = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+
 
     while not game_over:
 
@@ -116,6 +126,9 @@ def gameLoop():
 
         dis.fill(black)
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
+        pygame.draw.rect(dis, green, [potionx, potiony, snake_block, snake_block])  # Dibuja la poción mágica
+
+
 
         snake_head = [x1, y1]
         snake_List.append(snake_head)
@@ -134,6 +147,17 @@ def gameLoop():
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
+
+        # Reproducir el sonido de la manzana
+            eat_sound.play()
+
+        if x1 == potionx and y1 == potiony:
+            potionx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+            potiony = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+            Length_of_snake -= 1  # Restar 1 a la longitud de la serpiente
+
+            magic_potion_sound.play()
+
 
         # Ajustar la velocidad de la serpiente en función de su longitud
         snake_speed = 8 + Length_of_snake * 1.2
