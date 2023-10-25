@@ -7,10 +7,8 @@ pygame.init()
 
 # Definir colores
 white = (255, 255, 255)
-yellow = (255, 255, 102)
 black = (0, 0, 0)
 red = (213, 50, 80)
-green = (0, 255, 0)
 blue = (50, 153, 213)
 
 # Definir el tamaño de la pantalla
@@ -30,11 +28,11 @@ font_style = pygame.font.SysFont(None, 25)
 # Función para dibujar la serpiente en la pantalla
 def our_snake(snake_block, snake_list):
     for x in snake_list:
-        pygame.draw.rect(dis, green, [x[0], x[1], snake_block, snake_block])
+        pygame.draw.rect(dis, white, [x[0], x[1], snake_block, snake_block])
 
 # Función para mostrar el puntaje en la pantalla
 def Your_score(score):
-    value = font_style.render("Tus punticos: " + str(score), True, white)
+    value = font_style.render("Tus punticos: " + str(score), True, blue)
     dis.blit(value, [0, 0])
 
 # Función para mostrar el mensaje de derrota
@@ -66,7 +64,7 @@ def gameLoop():
     while not game_over:
 
         while game_close:
-            dis.fill(blue)
+            dis.fill(black)
             message("¡Perdiste! Presiona C para jugar otra vez o Q para salir", red)
             Your_score(Length_of_snake - 1)
             pygame.display.update()
@@ -103,25 +101,28 @@ def gameLoop():
                 elif event.key == pygame.K_ESCAPE:
                     game_close = True
 
+        # Actualizar la posición de la serpiente
+        x1 += x1_change
+        y1 += y1_change
+
+        # Verificar si la serpiente choca con ella misma
+        for segment in snake_List[:-1]:
+            if segment == [x1, y1]:
+                game_close = True
+
         # Verificar si la serpiente sale de la pantalla
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
             game_close = True
 
-        # Actualizar la posición de la serpiente
-        x1 += x1_change
-        y1 += y1_change
-        dis.fill(blue)
+        dis.fill(black)
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
-        snake_head = []
-        snake_head.append(x1)
-        snake_head.append(y1)
+
+        snake_head = [x1, y1]
         snake_List.append(snake_head)
+
+        # Limitar la longitud de la serpiente
         if len(snake_List) > Length_of_snake:
             del snake_List[0]
-
-        for x in snake_List[:-1]:
-            if x == snake_head:
-                game_close = True
 
         our_snake(snake_block, snake_List)
         Your_score(Length_of_snake - 1)
@@ -135,7 +136,7 @@ def gameLoop():
             Length_of_snake += 1
 
         # Ajustar la velocidad de la serpiente en función de su longitud
-        snake_speed = 8 + Length_of_snake * 2
+        snake_speed = 8 + Length_of_snake * 1.2
 
         pygame.time.Clock().tick(snake_speed)
 
