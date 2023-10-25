@@ -38,6 +38,16 @@ def Your_score(score):
     value = font_style.render("Tus punticos: " + str(score), True, white)
     dis.blit(value, [0, 0])
 
+# Función para mostrar el mensaje de derrota
+def message(msg, color):
+    mesg = font_style.render(msg, True, color)
+    dis.blit(mesg, [dis_width / 6, dis_height / 3])
+
+
+
+
+
+
 # Función principal del juego
 def gameLoop():
     game_over = False
@@ -63,6 +73,7 @@ def gameLoop():
 
         while game_close:
             dis.fill(blue)
+            message("¡Perdiste! Presiona C para jugar otra vez o Q para salir", red)
             Your_score(Length_of_snake - 1)
             pygame.display.update()
 
