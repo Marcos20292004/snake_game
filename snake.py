@@ -22,7 +22,7 @@ pygame.display.set_caption('Snake Game by ProGit')
 
 # Definir la velocidad del juego
 snake_block = 10
-snake_speed = 10
+snake_speed = 8
 
 # Definir la fuente y el tamaño del texto
 font_style = pygame.font.SysFont(None, 25)
@@ -41,8 +41,6 @@ def Your_score(score):
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
-
-
 
 # Función principal del juego
 def gameLoop():
@@ -135,6 +133,9 @@ def gameLoop():
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
+
+        # Ajustar la velocidad de la serpiente en función de su longitud
+        snake_speed = 8 + Length_of_snake * 2
 
         pygame.time.Clock().tick(snake_speed)
 
