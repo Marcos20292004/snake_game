@@ -5,7 +5,6 @@ import sys
 
 pygame.init()
 
-
 # Definir colores
 white = (255, 255, 255)
 yellow = (255, 255, 102)
@@ -42,6 +41,7 @@ def Your_score(score):
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
+
 
 
 # Función principal del juego
@@ -90,16 +90,16 @@ def gameLoop():
             if event.type == pygame.QUIT:
                 game_over = True
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT and x1_change == 0:
                     x1_change = -snake_block
                     y1_change = 0
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT and x1_change == 0:
                     x1_change = snake_block
                     y1_change = 0
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP and y1_change == 0:
                     y1_change = -snake_block
                     x1_change = 0
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN and y1_change == 0:
                     y1_change = snake_block
                     x1_change = 0
                 elif event.key == pygame.K_ESCAPE:
@@ -142,6 +142,3 @@ def gameLoop():
     sys.exit()
 
 gameLoop()
-
-pygame.init()
-
