@@ -44,10 +44,6 @@ def message(msg, color):
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
 
 
-
-
-
-
 # Función principal del juego
 def gameLoop():
     game_over = False
