@@ -19,7 +19,7 @@ dis_width = 600
 dis_height = 400
 
 dis = pygame.display.set_mode((dis_width, dis_height))
-pygame.display.set_caption('Snake Game by OpenAI')
+pygame.display.set_caption('Snake Game by ProGit')
 
 # Definir la velocidad del juego
 snake_block = 10
@@ -35,7 +35,7 @@ def our_snake(snake_block, snake_list):
 
 # Función para mostrar el puntaje en la pantalla
 def Your_score(score):
-    value = font_style.render("Your Score: " + str(score), True, white)
+    value = font_style.render("Tus punticos: " + str(score), True, white)
     dis.blit(value, [0, 0])
 
 # Función principal del juego
