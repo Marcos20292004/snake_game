@@ -26,7 +26,7 @@ snake_block = 10
 snake_speed = 10
 
 # Definir la fuente y el tamaño del texto
-font_style = pygame.font.SysFont(None, 15)
+font_style = pygame.font.SysFont(None, 25)
 
 # Función para dibujar la serpiente en la pantalla
 def our_snake(snake_block, snake_list):
