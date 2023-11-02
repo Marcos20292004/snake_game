@@ -6,8 +6,8 @@ import sys
 pygame.init()
 
 # Cargar el sonido de la manzana
-eat_sound = pygame.mixer.Sound("1.mp3")
-magic_potion_sound = pygame.mixer.Sound("2.mp3")
+eat_sound = pygame.mixer.Sound("hackaton23/snake_game/1.mp3")
+magic_potion_sound = pygame.mixer.Sound("hackaton23/snake_game/2.mp3")
 
 
 # Definir colores
